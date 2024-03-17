@@ -6,36 +6,19 @@ import errno
 
 from argparse import ArgumentParser, Namespace
 
-
-def init_parser():
-    parser = ArgumentParser(
-        prog="point_estimation",
-        description="Makes a point estimation on wine reviews dataset",
-    )
-
-    parser.add_argument(
-        "--input_directory_path",
-        required=False,
-        default="/kaggle/input",
-        help="Path of the directory that contains dataset files",
-    )
-
-    return parser
-
-
 class PointEstimator:
-    def __init__(self, args):
-        self.args = args
+    def __init__(self):
+        self.input_directory_path = "kaggle/input"
         self.input_file_paths = []
         self.dataframes = {}
 
     def fill_input_file_paths(self):
-        if os.path.isdir(self.args.input_directory_path) is False:
+        if os.path.isdir(self.input_directory_path) is False:
             raise FileNotFoundError(
-                errno.ENOENT, os.strerror(errno.ENOENT), self.args.input_directory_path
+                errno.ENOENT, os.strerror(errno.ENOENT), self.input_directory_path
             )
 
-        for directory_name, _, file_names in os.walk(self.args.input_directory_path):
+        for directory_name, _, file_names in os.walk(self.input_directory_path):
             for file_name in file_names:
                 file_path = os.path.join(directory_name, file_name)
                 self.input_file_paths.append(file_path)
@@ -51,10 +34,7 @@ class PointEstimator:
 
 
 def main():
-    parser = init_parser()
-    args = parser.parse_args()
-
-    estimator = PointEstimator(args)
+    estimator = PointEstimator()
 
     estimator.fill_input_file_paths()
 
