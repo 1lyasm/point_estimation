@@ -5,17 +5,17 @@ import os
 
 class PointEstimator:
     def __init__(self):
-        self.input_file_pathes = []
+        self.input_file_paths = []
         self.dataframes = {}
     
-    def fill_input_file_pathes(self):
+    def fill_input_file_paths(self):
         for directory_name, _, file_names in os.walk("/kaggle/input"):
                 for file_name in file_names:
                     file_path = os.path.join(directory_name, file_name)
-                    self.input_file_pathes.append(file_path)
+                    self.input_file_paths.append(file_path)
     
     def read_dataframes(self):
-        for input_file_path in self.input_file_pathes:
+        for input_file_path in self.input_file_paths:
             _, extension = os.path.splitext(input_file_path)
 
             if extension == "csv":
@@ -27,7 +27,7 @@ class PointEstimator:
 def main():
     estimator = PointEstimator()
     
-    estimator.fill_input_file_pathes()
+    estimator.fill_input_file_paths()
     estimator.read_dataframes()
     
 if __name__ == "__main__":
