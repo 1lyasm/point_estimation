@@ -2,6 +2,8 @@
 import numpy as np
 import pandas as pd
 import os
+import errno
+
 
 class PointEstimator:
     def __init__(self):
@@ -10,6 +12,11 @@ class PointEstimator:
         self.dataframes = {}
     
     def fill_input_file_paths(self):
+        if os.path.isdir(self.input_directory_path) is False:
+            raise FileNotFoundError(
+                errno.ENOENT, os.strerror(errno.ENOENT), self.input_directory_path
+            )
+
         for directory_name, _, file_names in os.walk(self.input_directory_path):
                 for file_name in file_names:
                     file_path = os.path.join(directory_name, file_name)
