@@ -26,11 +26,12 @@ class PointEstimator:
     def read_dataframes(self):
         for input_file_path in self.input_file_paths:
             _, extension = os.path.splitext(input_file_path)
+            base_file_name = os.path.basename(input_file_path)
 
             if extension == ".csv":
-                self.dataframes[input_file_path] = pd.read_csv(input_file_path)
+                self.dataframes[base_file_name] = pd.read_csv(input_file_path)
             elif extension == ".json":
-                self.dataframes[input_file_path] = pd.read_json(input_file_path)
+                self.dataframes[base_file_name] = pd.read_json(input_file_path)
 
 
 def main():
