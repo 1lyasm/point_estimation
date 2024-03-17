@@ -10,7 +10,7 @@ class PointEstimator:
         self.input_directory_path = "kaggle/input"
         self.input_file_paths = []
         self.dataframes = {}
-    
+
     def fill_input_file_paths(self):
         if os.path.isdir(self.input_directory_path) is False:
             raise FileNotFoundError(
@@ -18,10 +18,10 @@ class PointEstimator:
             )
 
         for directory_name, _, file_names in os.walk(self.input_directory_path):
-                for file_name in file_names:
-                    file_path = os.path.join(directory_name, file_name)
-                    self.input_file_paths.append(file_path)
-    
+            for file_name in file_names:
+                file_path = os.path.join(directory_name, file_name)
+                self.input_file_paths.append(file_path)
+
     def read_dataframes(self):
         for input_file_path in self.input_file_paths:
             _, extension = os.path.splitext(input_file_path)
@@ -30,15 +30,16 @@ class PointEstimator:
                 self.dataframes[input_file_path] = pd.read_csv(input_file_path)
             elif extension == ".json":
                 self.dataframes[input_file_path] = pd.read_json(input_file_path)
-    
-                    
+
+
 def main():
     estimator = PointEstimator()
-    
+
     estimator.fill_input_file_paths()
-    
+
     estimator.read_dataframes()
     print(f"Dataframes: {estimator.dataframes}")
-    
+
+
 if __name__ == "__main__":
     main()
