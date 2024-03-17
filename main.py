@@ -4,6 +4,9 @@ import pandas as pd
 import os
 import errno
 
+def parse_args():
+    pass
+
 
 class PointEstimator:
     def __init__(self):
@@ -33,6 +36,8 @@ class PointEstimator:
 
 
 def main():
+    args = parse_args()
+
     estimator = PointEstimator()
 
     estimator.fill_input_file_paths()
