@@ -1,4 +1,7 @@
-# Ignore input directory
+# Temporary file
+temp
+
+# Input directory
 kaggle/
 
 # Byte-compiled / optimized / DLL files
