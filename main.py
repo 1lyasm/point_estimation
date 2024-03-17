@@ -6,41 +6,20 @@ import errno
 
 from argparse import ArgumentParser, Namespace
 
+
 class PointEstimator:
     def __init__(self):
-        self.input_directory_path = "kaggle/input"
-        self.input_file_paths = []
-        self.dataframes = {}
+        self.input_file_path = "kaggle/input/winemag-data-130k-v2.csv"
+        self.dataframe = None
 
-    def fill_input_file_paths(self):
-        if os.path.isdir(self.input_directory_path) is False:
-            raise FileNotFoundError(
-                errno.ENOENT, os.strerror(errno.ENOENT), self.input_directory_path
-            )
-
-        for directory_name, _, file_names in os.walk(self.input_directory_path):
-            for file_name in file_names:
-                file_path = os.path.join(directory_name, file_name)
-                self.input_file_paths.append(file_path)
-
-    def read_dataframes(self):
-        for input_file_path in self.input_file_paths:
-            _, extension = os.path.splitext(input_file_path)
-            base_file_name = os.path.basename(input_file_path)
-
-            if extension == ".csv":
-                self.dataframes[base_file_name] = pd.read_csv(input_file_path)
-            elif extension == ".json":
-                self.dataframes[base_file_name] = pd.read_json(input_file_path)
+    def read_dataframe(self):
+        self.dataframe = pd.read_csv(self.input_file_path)
 
 
 def main():
     estimator = PointEstimator()
 
-    estimator.fill_input_file_paths()
-
-    estimator.read_dataframes()
-    print(f"Dataframes: {estimator.dataframes}")
+    estimator.read_dataframe()
 
 
 if __name__ == "__main__":
