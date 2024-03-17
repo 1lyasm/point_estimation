@@ -7,7 +7,7 @@ import errno
 
 class PointEstimator:
     def __init__(self):
-        self.input_directory_path = "/kaggle/input"
+        self.input_directory_path = "kaggle/input"
         self.input_file_paths = []
         self.dataframes = {}
     
