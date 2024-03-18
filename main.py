@@ -17,7 +17,7 @@ class PointEstimator:
         self.TEST_SIZE = 0.2
         self.X_COLUMNS = ["description"]
         self.Y_COLUMNS = ["points"]
-        self.MAX_TRIALS = 1
+        self.MAX_TRIALS = 10
         self.N_EPOCHS = 2
 
         self.dataframe = None
