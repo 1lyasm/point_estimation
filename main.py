@@ -13,7 +13,11 @@ from argparse import ArgumentParser, Namespace
 
 class PointEstimator:
     def __init__(self):
-        self.input_file_path = "kaggle/input/winemag-data-130k-v2.csv"
+        self.INPUT_FILE_PATH = "kaggle/input/winemag-data-130k-v2.csv"
+        self.TEST_SIZE = 0.2
+        self.X_COLUMNS = ["description"]
+        self.Y_COLUMNS = ["points"]
+
         self.dataframe = None
         self.x_train = None
         self.y_train = None
@@ -21,7 +25,7 @@ class PointEstimator:
         self.y_test = None
 
     def read_dataframe(self):
-        self.dataframe = pd.read_csv(self.input_file_path)
+        self.dataframe = pd.read_csv(self.INPUT_FILE_PATH)
 
     def preprocess_dataframe(self):
         new_columns = {"Unnamed: 0": "id"}
