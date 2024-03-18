@@ -48,8 +48,6 @@ class PointEstimator:
         regressor.fit(self.x_train, self.y_train, epochs=self.N_EPOCHS)
         y_predicted = regressor.predict(self.x_test)
 
-        print(regressor.evaluate(self.x_test, self.y_test))
-
 
 def main():
     estimator = PointEstimator()
