@@ -32,8 +32,8 @@ def main():
     estimator = PointEstimator()
 
     estimator.read_dataframe()
-
     estimator.preprocess_dataframe()
+
 
 if __name__ == "__main__":
     main()
