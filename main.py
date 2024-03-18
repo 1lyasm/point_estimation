@@ -19,12 +19,17 @@ class PointEstimator:
     def read_dataframe(self):
         self.dataframe = pd.read_csv(self.input_file_path)
 
+    def preprocess_dataframe(self):
+        new_columns = {"Unnamed: 0": "id"}
+        self.dataframe.rename(columns=new_columns, inplace=True)
+
 
 def main():
     estimator = PointEstimator()
 
     estimator.read_dataframe()
 
+    estimator.preprocess_dataframe()
 
 if __name__ == "__main__":
     main()
