@@ -31,12 +31,21 @@ class PointEstimator:
         new_columns = {"Unnamed: 0": "id"}
         self.dataframe.rename(columns=new_columns, inplace=True)
 
+    def prepare_data(self):
+        train, test = train_test_split(self.dataframe, test_size=self.TEST_SIZE)
+
+        self.x_train = train[self.X_COLUMNS].to_numpy()
+        self.y_train = train[self.Y_COLUMNS].to_numpy()
+
+        self.x_test = test[self.X_COLUMNS].to_numpy()
+        self.y_test = test[self.Y_COLUMNS].to_numpy()
 
 def main():
     estimator = PointEstimator()
 
     estimator.read_dataframe()
     estimator.preprocess_dataframe()
+    estimator.prepare_data()
 
 
 if __name__ == "__main__":
