@@ -17,6 +17,8 @@ class PointEstimator:
         self.TEST_SIZE = 0.2
         self.X_COLUMNS = ["description"]
         self.Y_COLUMNS = ["points"]
+        self.MAX_TRIALS = 1
+        self.N_EPOCHS = 2
 
         self.dataframe = None
         self.x_train = None
@@ -40,12 +42,22 @@ class PointEstimator:
         self.x_test = test[self.X_COLUMNS].to_numpy()
         self.y_test = test[self.Y_COLUMNS].to_numpy()
 
+    def run_model(self):
+        regressor = ak.TextRegressor(overwrite=True, max_trials=self.MAX_TRIALS)
+
+        regressor.fit(self.x_train, self.y_train, epochs=self.N_EPOCHS)
+        y_predicted = regressor.predict(self.x_test)
+
+        print(regressor.evaluate(self.x_test, self.y_test))
+
+
 def main():
     estimator = PointEstimator()
 
     estimator.read_dataframe()
     estimator.preprocess_dataframe()
     estimator.prepare_data()
+    estimator.run_model()
 
 
 if __name__ == "__main__":
