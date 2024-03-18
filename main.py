@@ -15,6 +15,10 @@ class PointEstimator:
     def __init__(self):
         self.input_file_path = "kaggle/input/winemag-data-130k-v2.csv"
         self.dataframe = None
+        self.x_train = None
+        self.y_train = None
+        self.x_test = None
+        self.y_test = None
 
     def read_dataframe(self):
         self.dataframe = pd.read_csv(self.input_file_path)
