@@ -1,8 +1,12 @@
 # %% [code] {"jupyter":{"outputs_hidden":false},"execution":{"iopub.status.busy":"2024-03-17T13:41:55.724387Z","iopub.execute_input":"2024-03-17T13:41:55.724720Z","iopub.status.idle":"2024-03-17T13:41:56.785607Z","shell.execute_reply.started":"2024-03-17T13:41:55.724685Z","shell.execute_reply":"2024-03-17T13:41:56.783074Z"}}
 import numpy as np
 import pandas as pd
+import tensorflow as tf
+import autokeras as ak
 import os
 import errno
+
+from sklearn.model_selection import train_test_split
 
 from argparse import ArgumentParser, Namespace
 
